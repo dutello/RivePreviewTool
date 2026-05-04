@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rive Preview</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <label class="file-button">
+        <input type="file" id="file-input" accept=".riv" hidden />
+        <span>Choose .riv file</span>
+      </label>
+      <span id="file-name" class="file-name">No file loaded</span>
+    </div>
+
+    <div class="topbar-center">
+      <span class="presets-label">Width:</span>
+      <button class="preset-btn" data-width="320">320</button>
+      <button class="preset-btn" data-width="375">375</button>
+      <button class="preset-btn" data-width="414">414</button>
+      <button class="preset-btn" data-width="768">768</button>
+      <button class="preset-btn" data-width="1024">1024</button>
+      <button class="preset-btn" data-width="full">Full</button>
+    </div>
+
+    <div class="topbar-right">
+      <label class="fit-control">
+        Fit:
+        <select id="fit-select">
+          <optgroup label="Responsive (reflows content)">
+            <option value="layout" selected>Layout — Rive responsive layout</option>
+          </optgroup>
+          <optgroup label="Static (scales artwork)">
+            <option value="contain">Contain</option>
+            <option value="cover">Cover</option>
+            <option value="fitWidth">Fit Width</option>
+            <option value="fitHeight">Fit Height</option>
+            <option value="fill">Fill (stretch)</option>
+            <option value="scaleDown">Scale Down</option>
+            <option value="none">None</option>
+          </optgroup>
+        </select>
+      </label>
+      <label class="fit-control" id="scale-control">
+        Scale:
+        <input type="range" id="scale-slider" min="0.25" max="3" step="0.05" value="1" />
+        <span id="scale-readout">1.00×</span>
+      </label>
+      <span id="size-readout" class="size-readout">— × —</span>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <div class="resizable" id="resizable">
+      <canvas id="rive-canvas"></canvas>
+      <div class="drag-handle drag-handle-right" id="drag-right" title="Drag to resize width"></div>
+    </div>
+    <div class="drop-hint" id="drop-hint">Drop a .riv file here, or use the button above</div>
+    <div class="layout-note" id="layout-note">
+      <strong>Layout mode</strong> reflows content as the container resizes — but only if the .riv file was authored with Rive&apos;s Layouts feature. Otherwise, switch to a static fit mode below to see the artwork scale.
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/@rive-app/canvas@2.37.5"></script>
+  <script src="app.js"></script>
+</body>
+</html>
