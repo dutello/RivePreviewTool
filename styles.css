@@ -125,19 +125,6 @@ body {
   color: var(--text);
 }
 
-#scale-slider {
-  width: 100px;
-  accent-color: var(--accent);
-}
-
-#scale-readout {
-  font-variant-numeric: tabular-nums;
-  color: var(--text);
-  min-width: 42px;
-  display: inline-block;
-  text-align: right;
-}
-
 .layout-note {
   position: absolute;
   bottom: 12px;

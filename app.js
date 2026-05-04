@@ -8,9 +8,6 @@
   const fileNameLabel = document.getElementById("file-name");
   const sizeReadout = document.getElementById("size-readout");
   const fitSelect = document.getElementById("fit-select");
-  const scaleSlider = document.getElementById("scale-slider");
-  const scaleReadout = document.getElementById("scale-readout");
-  const scaleControl = document.getElementById("scale-control");
   const dragRight = document.getElementById("drag-right");
   const dropHint = document.getElementById("drop-hint");
   const layoutNote = document.getElementById("layout-note");
@@ -32,13 +29,11 @@
 
   function buildLayout() {
     const fit = FIT_MAP[fitSelect.value] ?? Fit.Layout;
-    const layoutScaleFactor = parseFloat(scaleSlider.value) || 1;
-    return new Layout({ fit, alignment: Alignment.Center, layoutScaleFactor });
+    return new Layout({ fit, alignment: Alignment.Center });
   }
 
   function updateLayoutControlsVisibility() {
     const isLayout = fitSelect.value === "layout";
-    scaleControl.style.display = isLayout ? "" : "none";
     layoutNote.style.display = isLayout ? "" : "none";
   }
 
@@ -116,14 +111,6 @@
     riveInstance.resizeDrawingSurfaceToCanvas();
   });
 
-  // --- Layout scale slider (only meaningful in Fit.Layout mode) ---
-  scaleSlider.addEventListener("input", () => {
-    scaleReadout.textContent = `${parseFloat(scaleSlider.value).toFixed(2)}×`;
-    if (!riveInstance) return;
-    riveInstance.layout = buildLayout();
-    riveInstance.resizeDrawingSurfaceToCanvas();
-  });
-
   // --- Preset width buttons ---
   presetButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -178,5 +165,4 @@
   // Initial state
   updateSizeReadout();
   updateLayoutControlsVisibility();
-  scaleReadout.textContent = `${parseFloat(scaleSlider.value).toFixed(2)}×`;
 })();
